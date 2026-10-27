@@ -38,7 +38,9 @@ fi
 test_page="$(pwd)/tests/index.html"
 if command -v cygpath >/dev/null; then test_page="$(cygpath -m "$test_page")"; fi
 browser_profile="${TMPDIR:-${TEMP:-/tmp}}/regex-tracklayer-test-browser"
-rendered="$("$browser" --headless=new --disable-gpu --user-data-dir="$browser_profile" --virtual-time-budget=20000 --dump-dom "file:///${test_page#/}" 2>/dev/null)"
+browser_flags=(--headless=new --disable-gpu --user-data-dir="$browser_profile" --virtual-time-budget=20000)
+if [ -n "${CI:-}" ]; then browser_flags+=(--no-sandbox); fi
+rendered="$("$browser" "${browser_flags[@]}" --dump-dom "file:///${test_page#/}" 2>/dev/null)"
 
 html_unescape() { sed -e 's/&lt;/</g; s/&gt;/>/g; s/&quot;/"/g; s/&#39;/'"'"'/g; s/&amp;/\&/g'; }
 text_of() { grep -o "<$1[^>]*>[^<]*" | sed 's/<[^>]*>//'; }

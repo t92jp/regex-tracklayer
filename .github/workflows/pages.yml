@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
+name: Test and deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -21,43 +21,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js (for npm / elm if needed, or skip if manual curl)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Elm compiler
+      - name: Install Elm 0.19.1
         run: |
-          # 公式リリースから Elm 0.19.1 のバイナリを直接ダウンロードしてセットアップ
-          curl -L https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz | gunzip > /usr/local/bin/elm
-          chmod +x /usr/local/bin/elm
+          curl -fsSL https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz | gunzip > elm
+          sudo install elm /usr/local/bin/elm
           elm --version
 
-      - name: Build Elm application
-        run: |
-          # ビルド成果物をまとめるディレクトリを作成
-          mkdir -p dist/assets
-          
-          # Elmのコンパイル実行（--optimize オプションつき）
-          elm make src/Main.elm --optimize --output=dist/elm.js
-          
-          # 静体ファイルを dist/ にコピー
-          cp index.html ports.js style.css dist/
-          if [ -d "assets" ]; then
-            cp -r assets/* dist/assets/
-          fi
+      - name: Build and test
+        run: ./build.sh
 
-      - name: Upload artifact
+      - name: Assemble the site
+        run: |
+          mkdir -p dist
+          cp -r index.html style.css ports.js elm.js assets dist/
+
+      - name: Upload the site
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
