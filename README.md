@@ -1,7 +1,9 @@
 # Regex Tracklayer
-Try me from [t92.jp/regex-tracklayer](https://t92.jp/regex-tracklayer)
 Build regular expressions by laying stations on a railway track.
+
 The track diagram and the regular expression always match, and you can try the expression on a test string as you go.
+
+Try me from [t92.jp/regex-tracklayer](https://t92.jp/regex-tracklayer)
 
 ## The track
 
@@ -40,9 +42,6 @@ Requires [Elm 0.19.1](https://guide.elm-lang.org/install/elm.html) and bash (Git
 ```
 
 Then open `index.html` in a browser. No server is needed.
-
-The tests run in headless Chrome or Edge and print a summary such as `1227 checks, 0 failures`.
-Without either browser, open `tests/index.html` to see the results.
 
 ## Project structure
 
