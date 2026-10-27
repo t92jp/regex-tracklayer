@@ -13,7 +13,6 @@
 </head>
 <body>
 
-<!-- Icons: <svg class="i"><use href="#i-名前"/></svg> で参照する。JS からは ICON.名前 で取れる。 -->
 <svg id="icons" hidden>
   <symbol id="i-undo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
@@ -27,43 +26,12 @@
   <symbol id="i-signal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="13" rx="4"/><circle cx="12" cy="6" r="1.3"/><circle cx="12" cy="11" r="1.3"/><path d="M12 15v7M8 22h8"/></symbol>
   <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <!-- 信号機(赤/緑): 線ではなく塗りで描く -->
   <symbol id="i-sigR" viewBox="0 0 24 24"><rect x="7" y="1" width="10" height="22" rx="5" style="fill:currentColor"/><circle cx="12" cy="7" r="3.2" style="fill:var(--c-look)"/><circle cx="12" cy="17" r="3.2" style="fill:var(--good);opacity:.3"/></symbol>
   <symbol id="i-sigG" viewBox="0 0 24 24"><rect x="7" y="1" width="10" height="22" rx="5" style="fill:currentColor"/><circle cx="12" cy="7" r="3.2" style="fill:var(--c-look);opacity:.3"/><circle cx="12" cy="17" r="3.2" style="fill:var(--good)"/></symbol>
 </svg>
 
-<header class="top">
-  <h1><span>Regex Tracklayer</span></h1>
-  <div class="tools">
-    <button class="b ic" id="tidy" aria-label="Tidy up track" title="Tidy up track" disabled><svg class="i" aria-hidden="true"><use href="#i-tidy"/></svg></button>
-    <button class="b ic" id="undo" aria-label="Undo" title="Undo" disabled><svg class="i" aria-hidden="true"><use href="#i-undo"/></svg></button>
-    <button class="b ic" id="clear" aria-label="Clear all" title="Clear all"><svg class="i" aria-hidden="true"><use href="#i-trash"/></svg></button>
-  </div>
-</header>
-
-<main id="stage"><svg id="rail" role="group" aria-label="Track diagram"></svg></main>
-
-<section id="dock">
-  <div id="tray" role="toolbar" aria-label="Stations">
-    <button class="tk lit" data-k="lit" title="Text">abc</button>
-    <button class="tk cls" data-k="\d" title="Digit">\d</button>
-    <button class="tk cls" data-k="\w" title="Word character">\w</button>
-    <button class="tk cls" data-k="\s" title="Whitespace">\s</button>
-    <button class="tk cls" data-k="." title="Any character">.</button>
-    <button class="tk set" data-k="set" title="Character set">[ ]</button>
-    <button class="tk look" data-k="look" title="Signal (lookahead / lookbehind)"><svg class="i" aria-hidden="true"><use href="#i-signal"/></svg></button>
-    <span class="tz" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-trash"/></svg></span>
-  </div>
-  <div id="panel" hidden></div>
-  <div class="out">
-    <code id="out" aria-live="polite"></code>
-    <button class="b ic" id="copy" aria-label="Copy" title="Copy"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg></button>
-  </div>
-  <div class="test">
-    <input id="t" type="text" maxlength="120" placeholder="Try a string" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Test string">
-    <div id="res" hidden></div>
-  </div>
-</section>
-<script src="app.js"></script>
+<div id="app"></div>
+<script src="elm.js"></script>
+<script src="ports.js"></script>
 </body>
 </html>

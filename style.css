@@ -1,8 +1,5 @@
 :root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 
-/* Layout: 全画面ワークベンチ。上=横スクロールする線路図、下=駅の置き場・Regex出力・テスト。
-   Color: 地下鉄の路線色を役割に割り当てる(文字=鉄色, \d等=青, [ ]=緑, 分岐=橙, 選択=紫)。
-   Type: 本文は Zen Kaku Gothic New(案内表示の角ゴ)、Regexと線路上の文字は JetBrains Mono。 */
 :root{
   --bg:#E8ECE7; --paper:#FBFBF8; --ink:#1A2327; --muted:#69767C; --line:#CDD3CC;
   --rail:#2F3D45; --tie:#A8A08F;
@@ -29,13 +26,13 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;background:var(--bg);color:var(--ink);font:500 14px/1.4 var(--ui);
+body{margin:0;background:var(--bg);color:var(--ink);font:500 14px/1.4 var(--ui);-webkit-tap-highlight-color:transparent}
+#app{
+  height:100%;
   display:flex;flex-direction:column;gap:10px;
   padding-block:12px;
   padding-left:max(16px,env(safe-area-inset-left,0px));
   padding-right:max(16px,env(safe-area-inset-right,0px));
-  -webkit-tap-highlight-color:transparent;
 }
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 h1{margin:0;font:700 15px/1 var(--ui);letter-spacing:.06em}
@@ -120,12 +117,9 @@ h1 span{font-family:var(--mono);letter-spacing:0}
 .look .brail{fill:none;stroke:var(--rail);stroke-width:2;pointer-events:none}
 .look .sig{fill:var(--rail)}
 .look .box{fill:var(--rail);stroke:var(--rail)}
-/* 線路上の信号は普段は赤青とも点灯。否定か肯定かは吹き出しの色(赤/青)で示す */
 .look .lr{fill:var(--c-look)} .look .lgn{fill:var(--good)}
-/* 吹き出しの中の信号は、並びに当てはまったときに点く側だけ点灯(赤=止まる/青=進む) */
 .look .mini .lr,.look .mini .lgn{opacity:.25}
 .look .mini .on{opacity:1}
-/* グループの枠は普段は見せない(範囲は線路の分かれ目と合流点で分かる)。つかむ場所として、マウスを乗せたときと選んだときだけ出す */
 .alt .frame{fill:transparent;stroke:var(--c-alt);stroke-opacity:0;stroke-width:1.5;stroke-dasharray:4 4;pointer-events:all}
 .alt:hover>.frame{stroke-opacity:.45}
 .dragging .alt .frame{stroke-opacity:0}

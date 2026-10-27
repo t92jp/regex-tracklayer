@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="500" viewBox="0 0 960 500" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <style>
+    .panel { fill: #FBFBF8; stroke: #CDD3CC; }
+    .title { font-size: 15px; font-weight: 700; fill: #1A2327; }
+    .layer { font-size: 11px; font-weight: 700; letter-spacing: .08em; fill: #8A979C; }
+    .note { font-size: 11.5px; fill: #8A979C; }
+    .box { fill: #FFFFFF; stroke: #D8DDD6; }
+    .generated { stroke-dasharray: 5 4; stroke: #A9B1AC; }
+    .file { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13px; font-weight: 700; }
+    .desc { font-size: 12px; fill: #5D6A70; }
+    .page { fill: #0B7C9E; }
+    .elm { fill: #12805A; }
+    .tool { fill: #A95B00; }
+  </style>
+
+  <rect width="960" height="500" fill="#EEF1ED"/>
+
+  <rect x="20" y="20" width="250" height="460" rx="12" class="panel"/>
+  <text x="36" y="50" class="title">Browser page</text>
+
+  <rect x="36" y="70" width="218" height="56" rx="8" class="box"/>
+  <text x="50" y="93" class="file page">index.html</text>
+  <text x="50" y="113" class="desc">page shell and icon sprite</text>
+
+  <rect x="36" y="138" width="218" height="56" rx="8" class="box"/>
+  <text x="50" y="161" class="file page">style.css</text>
+  <text x="50" y="181" class="desc">all styling</text>
+
+  <rect x="36" y="206" width="218" height="56" rx="8" class="box"/>
+  <text x="50" y="229" class="file page">ports.js</text>
+  <text x="50" y="249" class="desc">storage, clipboard, regex runs</text>
+
+  <rect x="36" y="274" width="218" height="56" rx="8" class="box generated"/>
+  <text x="50" y="297" class="file page">elm.js</text>
+  <text x="50" y="317" class="desc">compiled app (generated)</text>
+
+  <rect x="290" y="20" width="420" height="460" rx="12" class="panel"/>
+  <text x="306" y="50" class="title">src/ — Elm</text>
+  <text x="694" y="50" text-anchor="end" class="note">upper layers use the ones below</text>
+
+  <rect x="306" y="70" width="388" height="56" rx="8" class="box"/>
+  <text x="320" y="93" class="file elm">Main.elm</text>
+  <text x="320" y="113" class="desc">app state, what each action does, screen layout</text>
+
+  <text x="306" y="152" class="layer">SCREEN</text>
+
+  <rect x="306" y="162" width="188" height="56" rx="8" class="box"/>
+  <text x="320" y="185" class="file elm">Diagram.elm</text>
+  <text x="320" y="205" class="desc">track layout and SVG</text>
+
+  <rect x="506" y="162" width="188" height="56" rx="8" class="box"/>
+  <text x="520" y="185" class="file elm">Drag.elm</text>
+  <text x="520" y="205" class="desc">drag and drop</text>
+
+  <rect x="306" y="230" width="188" height="56" rx="8" class="box"/>
+  <text x="320" y="253" class="file elm">Panel.elm</text>
+  <text x="320" y="273" class="desc">settings panel</text>
+
+  <rect x="506" y="230" width="188" height="56" rx="8" class="box"/>
+  <text x="520" y="253" class="file elm">Icon.elm</text>
+  <text x="520" y="273" class="desc">icons as a type</text>
+
+  <text x="306" y="314" class="layer">LOGIC</text>
+
+  <rect x="306" y="324" width="188" height="56" rx="8" class="box"/>
+  <text x="320" y="347" class="file elm">Track.elm</text>
+  <text x="320" y="367" class="desc">track data and editing</text>
+
+  <rect x="506" y="324" width="188" height="56" rx="8" class="box"/>
+  <text x="520" y="347" class="file elm">Pattern.elm</text>
+  <text x="520" y="367" class="desc">track → regex</text>
+
+  <rect x="306" y="392" width="188" height="56" rx="8" class="box"/>
+  <text x="320" y="415" class="file elm">Tidy.elm</text>
+  <text x="320" y="435" class="desc">simplify the track</text>
+
+  <rect x="506" y="392" width="188" height="56" rx="8" class="box"/>
+  <text x="520" y="415" class="file elm">Save.elm</text>
+  <text x="520" y="435" class="desc">save format (JSON)</text>
+
+  <rect x="730" y="20" width="210" height="460" rx="12" class="panel"/>
+  <text x="746" y="50" class="title">Build and tests</text>
+
+  <rect x="746" y="70" width="178" height="56" rx="8" class="box"/>
+  <text x="760" y="93" class="file tool">build.sh</text>
+  <text x="760" y="113" class="desc">build, then run tests</text>
+
+  <rect x="746" y="138" width="178" height="56" rx="8" class="box"/>
+  <text x="760" y="161" class="file tool">tests/</text>
+  <text x="760" y="181" class="desc">checks for src/</text>
+
+  <rect x="746" y="206" width="178" height="56" rx="8" class="box"/>
+  <text x="760" y="229" class="file tool">elm.json</text>
+  <text x="760" y="249" class="desc">Elm packages</text>
+</svg>
