@@ -93,7 +93,7 @@ gitBranchExample =
             SignalStop { light = Red, watch = Behind, line = line }
 
         forbiddenChars =
-            StationStop { kind = CharSet { chars = " ~^:?*[\\", negated = True }, repeat = { min = 1, max = Nothing }, lazy = False, detour = [], loop = [] }
+            StationStop { kind = CharSet { chars = " ~^:?*\\[\\\\", negated = True }, repeat = { min = 1, max = Nothing }, lazy = False, detour = [], loop = [] }
     in
     { anchoredStart = True
     , anchoredEnd = True
