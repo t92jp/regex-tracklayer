@@ -85,7 +85,7 @@ init flags =
         { track, testText } =
             flags.saved
                 |> Maybe.andThen Save.decode
-                |> Maybe.withDefault { track = Track.pluralNounsExample, testText = pluralNounsTestText }
+                |> Maybe.withDefault { track = Track.gitBranchExample, testText = gitBranchTestText }
     in
     refresh
         { track = track
@@ -119,9 +119,9 @@ init flags =
         }
 
 
-pluralNounsTestText : String
-pluralNounsTestText =
-    "cats, boxes, churches, potatoes, babies, boys, leaves, knives, a dog, the class"
+gitBranchTestText : String
+gitBranchTestText =
+    "feature/login-page"
 
 
 gapWidthForMouse : Float

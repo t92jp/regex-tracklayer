@@ -87,7 +87,7 @@ editing =
         (pruneLanes [ StationStop { kind = Text "a", repeat = once, lazy = False, detour = [ text "b" ], loop = [ text "c" ] } ])
     , expect "tidy joins texts" [ text "abc" ] (Tidy.tidy abc)
     , expect "tidy turns single-character lanes into a set" "[ab]" (pattern (Tidy.tidy [ branch [ [ text "a" ], [ text "b" ] ] ]))
-    , expect "save and load round trip" (Just Track.pluralNounsExample) (Save.decode (Save.encode { track = Track.pluralNounsExample, testText = "" }) |> Maybe.map .track)
+    , expect "save and load round trip" (Just Track.gitBranchExample) (Save.decode (Save.encode { track = Track.gitBranchExample, testText = "" }) |> Maybe.map .track)
     , expect "saves of another version are ignored" Nothing (Save.decode "{\"version\":0,\"track\":{},\"testText\":\"\"}")
     ]
 

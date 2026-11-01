@@ -1,6 +1,6 @@
 module Track exposing
     ( Track, Line, Stop(..), Station, Kind(..), CharClass(..), Signal, Light(..), Watch(..)
-    , pluralNounsExample, empty, station, Tool(..), newStop, classCode
+    , gitBranchExample, empty, station, Tool(..), newStop, classCode
     , Repeat, Preset(..), once, effectiveBounds, canSkip, canLoop, countVaries, quantifier, quantifierOf, preset, presetRepeat, loopCountLabel
     , Lane(..), LinePath, Spot, Selection(..), laneIn, lineAt, stopAt, updateLine, updateStop, updateStation
     , insert, remove, branchWith, wrapInBranch, addLane, laneCount, removeLane
@@ -74,38 +74,38 @@ station kind =
     StationStop { kind = kind, repeat = once, lazy = False, detour = [], loop = [] }
 
 
-pluralNounsExample : Track
-pluralNounsExample =
+gitBranchExample : Track
+gitBranchExample =
     let
-        wordEdge watch =
-            SignalStop { light = Red, watch = watch, line = [ station (Class WordChar) ] }
-
         text str =
             station (Text str)
 
         anyOf chars =
             station (CharSet { chars = chars, negated = False })
 
-        noneOf chars =
-            station (CharSet { chars = chars, negated = True })
+        anything =
+            StationStop { kind = Class AnyChar, repeat = { min = 0, max = Nothing }, lazy = False, detour = [], loop = [] }
 
-        letters =
-            StationStop { kind = CharSet { chars = "a-z", negated = False }, repeat = { min = 1, max = Nothing }, lazy = False, detour = [], loop = [] }
+        ahead line =
+            SignalStop { light = Red, watch = Ahead, line = line }
+
+        behind line =
+            SignalStop { light = Red, watch = Behind, line = line }
+
+        forbiddenChars =
+            StationStop { kind = CharSet { chars = " ~^:?*[\\", negated = True }, repeat = { min = 1, max = Nothing }, lazy = False, detour = [], loop = [] }
     in
-    { anchoredStart = False
-    , anchoredEnd = False
+    { anchoredStart = True
+    , anchoredEnd = True
     , line =
-        [ wordEdge Behind
-        , letters
-        , station
-            (Branch
-                [ [ station (Branch [ [ anyOf "sxzo" ], [ text "ch" ], [ text "sh" ] ]), text "es" ]
-                , [ noneOf "aeiou", text "ies" ]
-                , [ text "ves" ]
-                , [ noneOf "s", text "s" ]
-                ]
-            )
-        , wordEdge Ahead
+        [ ahead [ text "-" ]
+        , ahead [ text "." ]
+        , ahead [ anything, text ".." ]
+        , ahead [ anything, text "@{" ]
+        , ahead [ anything, text "/." ]
+        , forbiddenChars
+        , behind [ anyOf "./" ]
+        , behind [ text ".lock" ]
         ]
     }
 
