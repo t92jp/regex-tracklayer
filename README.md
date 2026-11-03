@@ -1,5 +1,5 @@
 # Regex Tracklayer
-Build regular expressions by laying stations on a railway track.
+Build regular expressions by laying stations on a railway track. Inspired by [Regex Railroad](https://regexper.com/documentation.html).
 
 The track diagram and the regular expression always match, and you can try the expression on a test string as you go.
 
